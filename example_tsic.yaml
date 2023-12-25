@@ -1,0 +1,18 @@
+---
+esphome:
+  name: tsic-test
+  platform: ESP8266
+  board: d1_mini
+  libraries:
+    - lebuni/ZACwire for TSIC@^2.0.0
+
+external_components:
+  # - source: components
+  - source: github://xs5871/esphome-tsic
+
+sensor:
+  - platform: tsic
+    name: "TSIC306 Temperature Sensor"
+    pin: D5
+    model: TSIC306
+    update_interval: 60s

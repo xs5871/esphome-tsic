@@ -1,0 +1,7 @@
+# MD012/no-multiple-blanks : Multiple consecutive blank lines : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md012.md
+MD012:
+  maximum: 2
+
+# MD026/no-trailing-punctuation : Trailing punctuation in heading : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md026.md
+MD026:
+  punctuation: ".,;!。，；：！"
