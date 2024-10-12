@@ -73,9 +73,15 @@ float TSIC::get_temperature(uint16_t data) {
         case TSIC_MODEL_306:
             temp = (data * 200 - (50 * 2047)) / 2047.;
             break;
+        case TSIC_MODEL_316:
+            temp = (data * 200 - (50 * 16383)) / 16383.;
+            break;
         case TSIC_MODEL_506:
             temp = (data * 70 - (10 * 2047)) / 2047.;
             break;
+        case TSIC_MODEL_516:
+        case TSIC_MODEL_716:
+            temp = (data * 70 - (10 * 16383)) / 16383.;
     }
     return temp;
 }

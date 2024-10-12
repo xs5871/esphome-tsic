@@ -39,7 +39,7 @@ sensor:
 * **pin** (**Required**, [Pin](https://esphome.io/guides/configuration-types#config-pin)):
   The pin where the ZACwire bus is connected.
 * **model** (**Required**, int): Specify the TSIC model, can be one of ``TSIC206``,
-  `TSIC306`, `TSIC506`.
+  `TSIC306`, `TSIC316`, `TSIC506`, `TSIC516`, `TSIC716`.
 * **update_interval** (*Optional*, [Time](https://esphome.io/guides/configuration-types#config-time)):
   The interval to check the sensor. Defaults to ``60s``.
 * All other options from [Sensor](https://esphome.io/components/sensor/#config-sensor).

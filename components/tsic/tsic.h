@@ -11,7 +11,10 @@ namespace tsic {
 enum TSICModel {
     TSIC_MODEL_206 = 206,
     TSIC_MODEL_306 = 306,
+    TSIC_MODEL_316 = 316,
     TSIC_MODEL_506 = 506,
+    TSIC_MODEL_516 = 516,
+    TSIC_MODEL_716 = 716,
 };
 
 class TSIC : public PollingComponent, public sensor::Sensor {

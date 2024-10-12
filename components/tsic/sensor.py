@@ -19,7 +19,10 @@ TSICModel = tsic_ns.enum("TSICModel")
 TSIC_MODELS = {
         "TSIC206": TSICModel.TSIC_MODEL_206,
         "TSIC306": TSICModel.TSIC_MODEL_306,
+        "TSIC316": TSICModel.TSIC_MODEL_316,
         "TSIC506": TSICModel.TSIC_MODEL_506,
+        "TSIC516": TSICModel.TSIC_MODEL_516,
+        "TSIC716": TSICModel.TSIC_MODEL_716,
 }
 TSIC = tsic_ns.class_("TSIC", cg.PollingComponent, sensor.Sensor, cg.Component)
 
