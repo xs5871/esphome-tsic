@@ -3,8 +3,6 @@ esphome:
   name: tsic-test
   platform: ESP8266
   board: d1_mini
-  libraries:
-    - lebuni/ZACwire for TSIC@^2.0.0
 
 external_components:
   # - source: components

@@ -5,11 +5,6 @@ temperature sensors into ESPHome.
 
 ---
 
-**Note**: The TSIC Sensor Component is based on
-[libuni/ZACwire](https://github.com/lebuni/ZACwire-Library), which has to be
-included explicitly.
-Please note the [caveats](#caveats) section.
-
 
 ## Usage
 
@@ -25,8 +20,6 @@ esphome:
   name: tsic-test
   platform: ESP8266
   board: d1_mini
-  libraries:
-    - lebuni/ZACwire for TSIC@^2.0.0
 
 external_components:
   # - source: components
@@ -52,17 +45,15 @@ sensor:
 * All other options from [Sensor](https://esphome.io/components/sensor/#config-sensor).
 
 
-## Caveats
+## Notes
 
-This component is just a minimal effort wrapper around the ZACwire communication
-protocol.
-That also means that this component is somewhat inefficient, because it can't
-control the necessary interrupt handling, or publish a new sensor reading as
-soon as it is complete.
-The TSIC component resorts to polling the ZACwire lib, never knowing if a
-reading gives a new or a previous value.
-The `update_interval` should always be chosen to be longer than the what the
-sensor hardware provides.
+TSIC sensors push readings at a fixed interval, which is independend of the
+components update interval.
 
-Things like sleep mode or suspending the component are not tested and may result
-in unexpected behavior.
+If the component's update interval is longer than the sensor's push interval,
+only the most recent sensor reading is published, effectively downsampling the
+sensor readings.
+
+If the update interval is shorter than the sensor interval, then update requests
+are skipped until a new sensor reading is ready: all readings are published, new
+values are only published once.

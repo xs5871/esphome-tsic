@@ -4,7 +4,6 @@
 #include "esphome/core/hal.h"
 #include "esphome/components/sensor/sensor.h"
 
-#include "ZACwire.h"
 
 namespace esphome {
 namespace tsic {
@@ -24,10 +23,19 @@ public:
     void set_model(TSICModel model) { model_ = model; }
     void update() override;
 
+    bool check_data_(uint16_t data);
+    float get_temperature(uint16_t data);
+
 protected:
-    ZACwire* sensor_;
     InternalGPIOPin *pin_;
     int16_t model_;
+    volatile uint8_t buffer_position_;
+    volatile uint16_t buffer_read_;
+    volatile uint16_t buffer_write_;
+    volatile uint32_t last_edge_us_;
+    volatile uint16_t strobe_time_;
+
+    static void IRAM_ATTR edge_intr(TSIC *sensor);
 };
 
 } // namespace tsic
