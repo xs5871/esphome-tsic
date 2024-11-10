@@ -32,7 +32,7 @@ public:
 protected:
     InternalGPIOPin *pin_;
     int16_t model_;
-    volatile uint8_t buffer_position_;
+    volatile uint8_t buffer_idx_;
     volatile uint16_t buffer_read_;
     volatile uint16_t buffer_write_;
     volatile uint32_t last_edge_us_;

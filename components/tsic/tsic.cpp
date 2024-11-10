@@ -24,7 +24,7 @@ float TSIC::get_setup_priority() const {
 void TSIC::setup() {
     ESP_LOGCONFIG(TAG, "Setting up TSIC...");
 
-    this->buffer_position_ = 0;
+    this->buffer_idx_ = 0;
     this->buffer_read_ = 0;
     this->last_edge_us_ = micros();
     this->pin_->setup();
@@ -115,16 +115,16 @@ void IRAM_ATTR TSIC::edge_intr(TSIC *sensor) {
 
     // skip the strobe bit at the beginning of a new packet
     if (delta > 500) {
-        sensor->buffer_position_ = 0;
+        sensor->buffer_idx_ = 0;
         sensor->buffer_write_ = 0;
         return;
     }
 
-    sensor->buffer_position_++;
+    sensor->buffer_idx_++;
 
     // First bit is always zero and can be used instead of the strobe bit to
     // recover a good approximation to the strobe time.
-    if (sensor->buffer_position_ == 1)  {
+    if (sensor->buffer_idx_ == 1)  {
         sensor->strobe_time_ = delta / 2;
         return;
     }
@@ -132,7 +132,7 @@ void IRAM_ATTR TSIC::edge_intr(TSIC *sensor) {
     uint8_t thr = sensor->strobe_time_;
 
     // account for stop-bit of previous word
-    if (sensor->buffer_position_ == 11) {
+    if (sensor->buffer_idx_ == 11) {
         thr += sensor->strobe_time_ / 2;
     }
     // offset if last bit was long (i.e. 1)
@@ -147,7 +147,7 @@ void IRAM_ATTR TSIC::edge_intr(TSIC *sensor) {
     }
 
     // copy double buffer
-    if (sensor->buffer_position_ == 19) {
+    if (sensor->buffer_idx_ == 19) {
         sensor->buffer_read_ = sensor->buffer_write_;
     }
 }
