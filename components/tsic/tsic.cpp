@@ -28,7 +28,7 @@ void TSIC::setup() {
     this->buffer_read_ = 0;
     this->last_edge_us_ = micros();
     this->pin_->setup();
-    this->pin_->attach_interrupt(TSIC::edge_intr, this, gpio::INTERRUPT_RISING_EDGE);
+    this->pin_->attach_interrupt(TSIC::edge_interrupt_, this, gpio::INTERRUPT_RISING_EDGE);
 }
 
 
@@ -108,7 +108,7 @@ bool TSIC::check_data_(uint16_t data) {
 }
 
 
-void IRAM_ATTR TSIC::edge_intr(TSIC *sensor) {
+void IRAM_ATTR TSIC::edge_interrupt_(TSIC *sensor) {
     uint32_t now = micros();
     uint32_t delta = now - sensor->last_edge_us_;
     sensor->last_edge_us_ = now;

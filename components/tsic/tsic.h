@@ -38,7 +38,7 @@ protected:
     volatile uint32_t last_edge_us_;
     volatile uint16_t strobe_time_;
 
-    static void IRAM_ATTR edge_intr(TSIC *sensor);
+    static void IRAM_ATTR edge_interrupt_(TSIC *sensor);
 };
 
 } // namespace tsic
