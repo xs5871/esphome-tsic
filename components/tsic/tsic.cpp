@@ -56,11 +56,11 @@ void TSIC::update() {
     }
 
     this->status_clear_warning();
-    publish_state(this->get_temperature(data));
+    this->publish_state(this->get_temperature_(data));
 }
 
 
-float TSIC::get_temperature(uint16_t data) {
+float TSIC::get_temperature_(uint16_t data) {
     // strip parity and stop bits
     data >>= 1;
     data = (data >> 2 & 0x700) | (data & 0xff);

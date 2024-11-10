@@ -26,9 +26,6 @@ public:
     void set_model(TSICModel model) { model_ = model; }
     void update() override;
 
-    bool check_data_(uint16_t data);
-    float get_temperature(uint16_t data);
-
 protected:
     InternalGPIOPin *pin_;
     int8_t model_;
@@ -37,6 +34,9 @@ protected:
     volatile uint16_t buffer_write_;
     volatile uint32_t last_edge_us_;
     volatile uint16_t strobe_time_;
+
+    bool check_data_(uint16_t data);
+    float get_temperature_(uint16_t data);
 
     static void IRAM_ATTR edge_interrupt_(TSIC *sensor);
 };
