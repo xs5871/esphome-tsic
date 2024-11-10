@@ -96,12 +96,6 @@ bool TSIC::check_data_(uint16_t data) {
         return false;
     }
 
-    // check stop bit == 0
-    data >> 1;
-    if (data & 1) {
-        return false;
-    }
-
     // check second parity
     for (uint8_t i=0; i<=7; ++i) {
         data = (data & 1) ^ (data >> 1);
