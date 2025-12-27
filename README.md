@@ -1,6 +1,6 @@
 # TSIC Temperature Sensors for ESPHome
 
-ESP-TSIC is implemens an external component for integrating some TSIC
+ESP-TSIC implements an external component for integrating TSIC (ZACwire)
 temperature sensors into ESPHome.
 
 ---
@@ -34,7 +34,7 @@ sensor:
 ```
 
 
-## Configuration variables:
+## Configuration variables
 
 * **pin** (**Required**, [Pin](https://esphome.io/guides/configuration-types#config-pin)):
   The pin where the ZACwire bus is connected.
