@@ -10,7 +10,7 @@ static const char *const TAG = "tsic";
 
 void TSIC::dump_config() {
     ESP_LOGCONFIG(TAG,  "TSIC:");
-    LOG_PIN("  Pin: ", this->pin_)
+    LOG_PIN("  Pin: ", this->pin_);
     ESP_LOGCONFIG(TAG,  "  Model: %i", this->model_);
     LOG_UPDATE_INTERVAL(this);
 }
